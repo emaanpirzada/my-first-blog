@@ -1,19 +1,11 @@
-<html>
-	<head>
-		<title>Emaan's Blog</title>
-	<head>
-	<body>
-		<div>
-			<h1><a href="">Emaan's Blog</a></h1>
-			<p>Last Updated: 03.04.17, 11:20</p>
-		</div>
+{% extends 'blog/base.html' %}
 
-{% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-	</body>
-</html>
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+		<div class="date">
+				<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+				<p>{{ post.text|linebreaksbr }}</p>
+		</div>
+	{% endfor %}
+{% endblock %}
